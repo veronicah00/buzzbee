@@ -179,6 +179,7 @@
     </section>
 
     <script>
+        window.backendApiUrl = '';
         const cartInfo = document.getElementById('cartInfo');
         const selectedProductInput = document.getElementById('selectedProduct');
         const selectedPriceInput = document.getElementById('selectedPrice');
@@ -250,7 +251,8 @@
                 timestamp: new Date().toLocaleString()
             };
             try {
-                const response = await fetch('/api/order', {
+                const backendUrl = window.backendApiUrl || '/api';
+            const response = await fetch(`${backendUrl}/order`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
@@ -262,7 +264,9 @@
                     cart = null;
                     renderCart();
                 } else {
-                    throw new Error('Failed to submit order');
+                    const result = await response.json().catch(() => null);
+                    const errorMessageText = (result && result.error) ? result.error : 'Failed to submit order';
+                    throw new Error(errorMessageText);
                 }
             } catch (error) {
                 errorMessage.textContent = 'Error submitting order. Please try again.';

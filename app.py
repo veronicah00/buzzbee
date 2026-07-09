@@ -11,6 +11,9 @@ import os
 import json
 import requests
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
