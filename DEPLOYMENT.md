@@ -31,6 +31,15 @@ Render is a simple host for Python web apps.
 
 Render will build and deploy your app, then provide a service URL.
 
+### If Render fails to deploy
+- Open the Render deploy log details.
+- Copy the first error message or the failing step.
+- Common issues:
+  - missing packages in `requirements.txt`
+  - invalid Python runtime
+  - port or start command errors
+- This repo now includes `runtime.txt` and `Procfile` to support Render.
+
 ## Step 3: Use the deployed backend URL in the frontend
 After Render deploys, copy the service URL, for example:
 
