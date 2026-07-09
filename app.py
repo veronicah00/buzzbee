@@ -291,6 +291,8 @@ if __name__ == '__main__':
     # Initialize database
     init_db()
     add_default_products()
-    
-    # Run development server
-    app.run(debug=True, host='localhost', port=5000)
+
+    # Run server (use env vars for production hosting)
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('DEBUG', 'False').lower() in ('1', 'true', 'yes')
+    app.run(debug=debug, host='0.0.0.0', port=port)

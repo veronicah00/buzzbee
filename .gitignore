@@ -1,3 +1,16 @@
+venv/
+env/
+*.pyc
+__pycache__/
+buzzbee_orders.db
+*.sqlite3
+*.db
+.env
+.idea/
+.vscode/
+.DS_Store
+node_modules/
+*.log
 __pycache__/
 *.pyc
 *.pyo
